@@ -1,0 +1,11 @@
+loki-stack:
+  grafana:
+    enabled: true
+  prometheus:
+    enabled: true
+    alertmanager:
+      persistentVolume:
+        enabled: false
+    server:
+      persistentVolume:
+        enabled: false
