@@ -1,4 +1,8 @@
 loki-stack:
+  loki:
+    enabled: true
+    persistence:
+      enabled: true
   grafana:
     enabled: true
     service:
