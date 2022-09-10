@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.26.0 (HEAD)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: teamspeak
+  name: teamspeak
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: teamspeak
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.26.0 (HEAD)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: teamspeak
+    spec:
+      containers:
+      - image: teamspeak
+        name: teamspeak
+        env:
+        - name: TS3SERVER_DB_HOST
+          value: postgresql.int.kumpdev.com #teamspeak-mariadb
+        - name: TS3SERVER_DB_NAME
+          value: teamspeak3 #teamspeak
+        # - name: TS3SERVER_DB_PASSWORD
+        #   value: '{{ mysql_password }}'
+        - name: TS3SERVER_DB_PLUGIN
+          value: ts3db_postgresql #ts3db_mariadb
+        - name: TS3SERVER_DB_SQLCREATEPATH
+          value: create_postgresql #create_mariadb
+        - name: TS3SERVER_DB_USER
+          value: teamspeak3 #root
+        - name: TS3SERVER_DB_WAITUNTILREADY
+          value: "30"
+        - name: TS3SERVER_LICENSE
+          value: accept
+        envFrom:
+        - secretRef:
+            name: teamspeak3dbcreds
+        ports:
+          - containerPort: 9987
+            protocol: UDP
+          - containerPort: 10011
+          - containerPort: 30033
+        resources: {}
+      restartPolicy: Always
+status: {}
