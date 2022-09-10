@@ -11,7 +11,7 @@ loki-stack:
     enabled: true
     alertmanager:
       persistentVolume:
-        enabled: true
+        enabled: false
     server:
       persistentVolume:
-        enabled: true
+        enabled: false
