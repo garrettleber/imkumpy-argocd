@@ -41,9 +41,9 @@ spec:
             - name: "voice"
               containerPort: 9987
               protocol: UDP
-            - name: "server query"
+            - name: "server-query"
               containerPort: 10011
-            - name: "file transport"
+            - name: "file-transport"
               containerPort: 30033
           resources:
           env:
@@ -71,10 +71,10 @@ spec:
       port: 9987
       protocol: UDP
       targetPort: 9987
-    - name: "server query"
+    - name: "server-query"
       port: 10011
       targetPort: 10011
-    - name: "file transport"
+    - name: "file-transport"
       port: 30033
       targetPort: 30033
   selector:
