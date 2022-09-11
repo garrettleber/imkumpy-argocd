@@ -10,6 +10,8 @@ metadata:
   name: teamspeak-pvc
   namespace: teamspeak
 spec:
+  accessModes:
+    - ReadWriteOnce
   resources:
     requests:
       storage: 256Mi
