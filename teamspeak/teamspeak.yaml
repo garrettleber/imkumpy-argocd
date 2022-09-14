@@ -58,6 +58,13 @@ spec:
           image: ricardbejarano/ts3exporter
           ports:
           - containerPort: 9189
+          env:
+          - name: SERVERQUERY_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: tscreds
+                key: password
+                optional: false
       volumes:
         - name: teamspeak-data
           persistentVolumeClaim:
