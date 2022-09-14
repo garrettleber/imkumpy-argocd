@@ -30,6 +30,7 @@ spec:
       app: teamspeak
   strategy:
     type: Recreate
+  revisionHistoryLimit: 0
   template:
     metadata:
       namespace: teamspeak
