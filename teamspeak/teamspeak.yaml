@@ -54,21 +54,6 @@ spec:
           volumeMounts:
           - mountPath: /var/ts3server/
             name: teamspeak-data
-        - name: ts3exporter
-          image: ricardbejarano/ts3exporter
-          ports:
-          - containerPort: 9189
-          args:
-            - -enablechannelmetrics
-            - -user
-            - ts3exporter
-          env:
-          - name: SERVERQUERY_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: tscreds
-                key: password
-                optional: false
       volumes:
         - name: teamspeak-data
           persistentVolumeClaim:
