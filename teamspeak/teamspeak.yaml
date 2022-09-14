@@ -28,6 +28,8 @@ spec:
   selector:
     matchLabels:
       app: teamspeak
+  strategy:
+    type: Recreate
   template:
     metadata:
       namespace: teamspeak
