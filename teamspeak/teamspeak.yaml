@@ -38,13 +38,13 @@ spec:
         - name: teamspeak-server
           image: teamspeak
           ports:
-            - name: "voice"
-              containerPort: 9987
-              protocol: UDP
-            - name: "server-query"
-              containerPort: 10011
-            - name: "file-transport"
-              containerPort: 30033
+          - name: "voice"
+            containerPort: 9987
+            protocol: UDP
+          - name: "server-query"
+            containerPort: 10011
+          - name: "file-transport"
+            containerPort: 30033
           resources:
           env:
           - name: TS3SERVER_LICENSE
@@ -52,6 +52,10 @@ spec:
           volumeMounts:
           - mountPath: /var/ts3server/
             name: teamspeak-data
+        - name: ts3exporter
+          image: ricardbejarano/ts3exporter
+          ports:
+          - containerPort: 9189
       volumes:
         - name: teamspeak-data
           persistentVolumeClaim:
