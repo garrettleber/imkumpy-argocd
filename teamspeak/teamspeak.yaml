@@ -58,6 +58,10 @@ spec:
           image: ricardbejarano/ts3exporter
           ports:
           - containerPort: 9189
+          args:
+            - -enablechannelmetrics
+            - -user
+            - ts3exporter
           env:
           - name: SERVERQUERY_PASSWORD
             valueFrom:
