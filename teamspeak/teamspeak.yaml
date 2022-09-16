@@ -30,7 +30,7 @@ spec:
         image: teamspeak
         env:
         - name: TS3SERVER_DB_HOST
-          value: postgresql.int.kumpdev.com
+          value: 192.168.0.230
         - name: TS3SERVER_DB_NAME
           value: teamspeak3
         - name: TS3SERVER_DB_PLUGIN
