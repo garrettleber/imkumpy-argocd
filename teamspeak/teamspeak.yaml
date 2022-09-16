@@ -31,6 +31,8 @@ spec:
         env:
         - name: TS3SERVER_DB_HOST
           value: 192.168.0.230
+        - name: TS3SERVER_DB_PORT
+          value: '5432'
         - name: TS3SERVER_DB_NAME
           value: teamspeak3
         - name: TS3SERVER_DB_PLUGIN
