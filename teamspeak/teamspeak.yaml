@@ -4,18 +4,6 @@ kind: Namespace
 metadata:
   name: teamspeak
 ---
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: teamspeak-pvc
-  namespace: teamspeak
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 256Mi
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -38,27 +26,36 @@ spec:
         app: teamspeak
     spec:
       containers:
-        - name: teamspeak-server
-          image: teamspeak
-          ports:
-          - name: "voice"
-            containerPort: 9987
-            protocol: UDP
-          - name: "server-query"
-            containerPort: 10011
-          - name: "file-transport"
-            containerPort: 30033
-          resources:
-          env:
-          - name: TS3SERVER_LICENSE
-            value: accept
-          volumeMounts:
-          - mountPath: /var/ts3server/
-            name: teamspeak-data
-      volumes:
-        - name: teamspeak-data
-          persistentVolumeClaim:
-            claimName: teamspeak-pvc
+      - name: teamspeak-server
+        image: teamspeak
+        env:
+        - name: TS3SERVER_DB_HOST
+          value: postgresql.int.kumpdev.com
+        - name: TS3SERVER_DB_NAME
+          value: teamspeak3
+        - name: TS3SERVER_DB_PLUGIN
+          value: ts3db_postgresql
+        - name: TS3SERVER_DB_SQLCREATEPATH
+          value: create_postgresql
+        - name: TS3SERVER_DB_USER
+          value: teamspeak3
+        - name: TS3SERVER_DB_WAITUNTILREADY
+          value: "30"
+        - name: TS3SERVER_LICENSE
+          value: accept
+        envFrom:
+        - secretRef:
+            name: teamspeak3dbcreds
+        ports:
+        - name: "voice"
+          containerPort: 9987
+          protocol: UDP
+        - name: "server-query"
+          containerPort: 10011
+        - name: "file-transport"
+          containerPort: 30033
+        resources: {}
+      restartPolicy: Always
 ---
 apiVersion: v1
 kind: Service
@@ -70,15 +67,15 @@ metadata:
 spec:
   type: LoadBalancer
   ports:
-    - name: "voice"
-      port: 9987
-      protocol: UDP
-      targetPort: 9987
-    - name: "server-query"
-      port: 10011
-      targetPort: 10011
-    - name: "file-transport"
-      port: 30033
-      targetPort: 30033
+  - name: "voice"
+    port: 9987
+    protocol: UDP
+    targetPort: 9987
+  - name: "server-query"
+    port: 10011
+    targetPort: 10011
+  - name: "file-transport"
+    port: 30033
+    targetPort: 30033
   selector:
     app: teamspeak
