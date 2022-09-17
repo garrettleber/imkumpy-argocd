@@ -1,4 +1,5 @@
-serverName: "matrix.kumpdev.com"
+serverName: 'kumpdev.com'
+publicServerName: 'matrix.kumpdev.com'
 config:
   recaptcha:
     publicKey: '6LcrhwkiAAAAAFs14AhafUvWJw7lsFJ-GJjce_h8'
