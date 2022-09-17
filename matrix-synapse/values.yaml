@@ -1,0 +1,12 @@
+serverName: "matrix.kumpdev.com"
+config:
+  recaptcha:
+    publicKey: '6LcrhwkiAAAAAFs14AhafUvWJw7lsFJ-GJjce_h8'
+    privateKey: '6LcrhwkiAAAAAGZq4jGCXdQXYrXDW30BskodtX1W'
+  enableRegistration: true
+wellknown:
+  enabled: true
+postgresql:
+  enabled: false
+externalPostgresql:
+  existingSecret: synapsedbcreds
