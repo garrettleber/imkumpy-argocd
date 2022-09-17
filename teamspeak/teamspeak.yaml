@@ -34,13 +34,13 @@ spec:
         - name: TS3SERVER_DB_PORT
           value: '5432'
         - name: TS3SERVER_DB_NAME
-          value: teamspeak3
+          value: teamspeak
         - name: TS3SERVER_DB_PLUGIN
           value: ts3db_postgresql
         - name: TS3SERVER_DB_SQLCREATEPATH
           value: create_postgresql
         - name: TS3SERVER_DB_USER
-          value: teamspeak3
+          value: teamspeak
         - name: TS3SERVER_DB_WAITUNTILREADY
           value: "30"
         - name: TS3SERVER_LICENSE
