@@ -15,14 +15,3 @@ loki-stack:
     server:
       persistentVolume:
         enabled: true
-    prometheusSpec:
-      additionalScrapeConfigs:
-        - job_name: 'prometheus_external'
-          honor_timestamps: true
-          scrape_interval: 15s
-          scrape_timeout: 10s
-          metrics_path: /metrics
-          scheme: http
-          static_configs:
-            - targets:
-              - proxmox.kumpdev.com:9100
