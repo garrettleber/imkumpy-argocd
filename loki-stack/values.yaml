@@ -15,6 +15,7 @@ loki-stack:
     server:
       persistentVolume:
         enabled: true
+    prometheusSpec:
       additionalScrapeConfigs:
         - job_name: 'prometheus_external'
           honor_timestamps: true
