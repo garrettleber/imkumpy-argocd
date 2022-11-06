@@ -5,8 +5,15 @@ loki-stack:
     persistence:
       enabled: true
     gateway:
-      service:
-        type: LoadBalancer
+      enabled: false
+    ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: nginx
+      hosts:
+      - host: loki.kumpdev.com
+        paths:
+          - path: /
   grafana:
     enabled: true
     service:
