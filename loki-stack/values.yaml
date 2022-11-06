@@ -3,6 +3,9 @@ loki-stack:
     enabled: true
     persistence:
       enabled: true
+    gateway:
+      ingress:
+        enabled: true
   grafana:
     enabled: true
     service:
