@@ -11,10 +11,7 @@ loki-stack:
       ingressClassName: nginx
       # annotations:
       #   kubernetes.io/ingress.class: nginx
-      hosts:
-      - host: loki.kumpdev.com
-        paths:
-          - path: /
+      hosts: ["loki.kumpdev.com"]
   grafana:
     enabled: true
     service:
