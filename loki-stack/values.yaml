@@ -6,6 +6,12 @@ loki-stack:
     gateway:
       ingress:
         enabled: true
+      annotations:
+        kubernetes.io/ingress.class: nginx
+      hosts:
+      - host: gateway.loki.kumpdev.com
+        paths:
+          - path: /
   grafana:
     enabled: true
     service:
