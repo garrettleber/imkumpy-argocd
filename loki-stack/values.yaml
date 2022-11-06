@@ -12,7 +12,7 @@ loki-stack:
       # annotations:
       #   kubernetes.io/ingress.class: nginx
       hosts: 
-        - host: loki.kumpdev.com
+        - host: loki.int.kumpdev.com
           paths:
             - /api/prom/push
             - /loki/api/v1/push
