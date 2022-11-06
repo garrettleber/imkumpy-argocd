@@ -1,17 +1,12 @@
 loki-stack:
+  # https://grafana.com/docs/loki/next/installation/helm/reference/
   loki:
     enabled: true
     persistence:
       enabled: true
     gateway:
-      ingress:
-        enabled: true
-      annotations:
-        kubernetes.io/ingress.class: nginx
-      hosts:
-      - host: gateway.loki.kumpdev.com
-        paths:
-          - path: /
+      service:
+        type: LoadBalancer
   grafana:
     enabled: true
     service:
