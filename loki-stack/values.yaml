@@ -26,8 +26,16 @@ loki-stack:
             # - /prometheus/api/v1/alerts
   grafana:
     enabled: true
-    service:
-      type: LoadBalancer
+    persistence:
+      enabled: true
+    ingress:
+      enabled: true
+      ingressClassName: nginx
+      # annotations:
+      #   kubernetes.io/ingress.class: nginx
+      hosts: 
+        - grafana.kumpdev.com
+        - grafana.int.kumpdev.com
   prometheus:
     enabled: true
     alertmanager:
