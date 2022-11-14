@@ -44,3 +44,24 @@ loki-stack:
     server:
       persistentVolume:
         enabled: true
+    extraScrapeConfigs: |
+      - job_name: 'node-exporter'
+        honor_timestamps: true
+        scrape_interval: 15s
+        scrape_timeout: 10s
+        metrics_path: /metrics
+        scheme: http
+        static_configs:
+        - targets:
+          - ns1.int.kumpdev.com:9100
+          - ns2.int.kumpdev.com:9100
+          - dockerhost.int.kumpdev.com:9100
+          - omada.int.kumpdev.com:9100
+          - openvpncloud.int.kumpdev.com:9100
+          - ryzen-proxmox.kumpdev.com:9100
+          - hpprodesk-proxmox.kumpdev.com:9100
+          - macmini-proxmox.kumpdev.com:9100
+          - qbittorrent.int.kumpdev.com:9100
+          - ssh.gitea.kumpdev.com:9100
+          - syncthing.int.kumpdev.com:9100
+          - truenas.int.kumpdev.com:9100
