@@ -22,6 +22,7 @@ loki-stack:
             # - /loki/api/v1/rules
             # - /prometheus/api/v1/rules
             # - /prometheus/api/v1/alerts
+
   grafana:
     enabled: true
     persistence:
@@ -32,8 +33,10 @@ loki-stack:
       hosts: 
         - grafana.kumpdev.com
         - grafana.int.kumpdev.com
+
   prometheus:
     enabled: true
+
     alertmanager:
       persistentVolume:
         enabled: true
@@ -43,9 +46,27 @@ loki-stack:
         hosts: 
           - alertmanager.kumpdev.com
           - alertmanager.int.kumpdev.com
+          
+    alertmanagerFiles:
+      alertmanager.yml:
+        global: {
+          slack_api_url: 'https://mattermost.kumpdev.com/hooks/7okyo7t1rjd4xgcpp8iz3fu4dc'
+        }
+        receivers:
+          - name: default-receiver
+            slack_configs:
+              - channel: '#Kumpdev-Alerts'
+                send_resolved: true
+        route:
+          group_wait: 10s
+          group_interval: 5m
+          receiver: default-receiver
+          repeat_interval: 3h
+
     server:
       persistentVolume:
         enabled: true
+
     extraScrapeConfigs: |
       - job_name: 'node-exporter'
         honor_timestamps: true
