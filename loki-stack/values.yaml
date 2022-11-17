@@ -9,8 +9,6 @@ loki-stack:
     ingress:
       enabled: true
       ingressClassName: nginx
-      # annotations:
-      #   kubernetes.io/ingress.class: nginx
       hosts: 
         - host: loki.int.kumpdev.com
           paths:
@@ -31,8 +29,6 @@ loki-stack:
     ingress:
       enabled: true
       ingressClassName: nginx
-      # annotations:
-      #   kubernetes.io/ingress.class: nginx
       hosts: 
         - grafana.kumpdev.com
         - grafana.int.kumpdev.com
@@ -41,6 +37,12 @@ loki-stack:
     alertmanager:
       persistentVolume:
         enabled: true
+      ingress:
+        enabled: true
+        ingressClassName: nginx
+        hosts: 
+          - alertmanager.kumpdev.com
+          - alertmanager.int.kumpdev.com
     server:
       persistentVolume:
         enabled: true
