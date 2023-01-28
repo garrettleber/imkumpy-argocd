@@ -83,3 +83,24 @@ spec:
 #   destination:
 #     server: 'https://kubernetes.default.svc'
 #     namespace: mattermost
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: caddy
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: 'https://git.kumpdev.com/kumpy/kumpdev-argocd.git'
+    path: caddy
+    targetRevision: HEAD
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: caddy
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

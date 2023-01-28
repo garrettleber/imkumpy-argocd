@@ -1,0 +1,126 @@
+---
+apiVersion: v1
+kind: "ConfigMap"
+metadata:
+  name: caddyfile-configmap
+  namespace: caddy
+  labels:
+    app: caddy
+data:
+  Caddyfile: |-
+    #
+    # Internal Services
+    #
+
+    git.kumpdev.com {
+      @internal {
+        remote_ip 192.168.0.0/16
+        remote_ip 172.16.0.0/12
+      }
+      handle @internal {
+        reverse_proxy gitlab.int.kumpdev.com:443 {
+          transport http {
+            tls_insecure_skip_verify
+          }
+        }
+      }
+      # else
+      respond /* "403 Access Denied" 403 {
+        close
+      }
+    }
+
+    homepage.kumpdev.com {
+      @internal {
+        remote_ip 192.168.0.0/16
+        remote_ip 172.16.0.0/12
+      }
+      handle @internal {
+        reverse_proxy homepage:3000
+      }
+      # else
+      respond /* "403 Access Denied" 403 {
+        close
+      }
+    }
+
+    omada.kumpdev.com {
+      @internal {
+        remote_ip 192.168.0.0/16
+      }
+      handle @internal {
+        reverse_proxy omada.int.kumpdev.com:8043 {
+          transport http {
+            tls_insecure_skip_verify
+          }
+          header_up Host {host}:8043
+          header_down Location :8043 :443
+        }
+      }
+      # else
+      respond /* "403 Access Denied" 403 {
+        close
+      }
+    }
+
+    plex.kumpdev.com {
+      encode gzip
+      @internal {
+        remote_ip 192.168.0.0/16
+      }
+      handle @internal {
+        reverse_proxy plex.int.kumpdev.com:32400
+      }
+      # else
+      respond /* "403 Access Denied" 403 {
+        close
+      }
+    }
+
+    ryzen-proxmox.kumpdev.com {
+      @internal {
+        remote_ip 192.168.0.0/16
+        remote_ip 172.16.0.0/12
+      }
+      handle @internal {
+        reverse_proxy 192.168.0.100:8006 {
+          transport http {
+            tls_insecure_skip_verify
+          }
+        }
+      }
+      # else
+      respond /* "403 Access Denied" 403 {
+        close
+      }
+    }
+
+    zabbix.kumpdev.com {
+      encode gzip
+      root * /usr/share/zabbix
+      php_fastcgi unix//run/php/php7.4-fpm.sock
+      @internal {
+        remote_ip 192.168.0.0/16
+        remote_ip 172.16.0.0/12
+      }
+      handle @internal {
+        rewrite * /zabbix/{uri}
+        reverse_proxy zabbix.int.kumpdev.com
+      }
+      # else
+      respond /* "403 Access Denied" 403 {
+        close
+      }
+    }
+
+    #
+    # External Services
+    #
+
+    mattermost.kumpdev.com {
+      reverse_proxy 192.168.0.97:8065
+    }
+
+    requests.kumpdev.com {
+      reverse_proxy unraid.int.kumpdev.com:5055
+    }
