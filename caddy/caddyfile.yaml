@@ -8,6 +8,10 @@ metadata:
     app: caddy
 data:
   Caddyfile: |-
+    {
+      auto_https disable_redirects
+    }
+
     #
     # Internal Services
     #
@@ -31,7 +35,6 @@ data:
     }
 
     homepage.kumpdev.com {
-      tls off
       @internal {
         remote_ip 192.168.0.0/16
         remote_ip 172.16.0.0/12
