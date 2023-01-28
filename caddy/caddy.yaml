@@ -57,15 +57,15 @@ metadata:
 spec:
   type: LoadBalancer
   ports:
-  - name: "HTTPS/UDP"
+  - name: "https-udp"
     port: 443
     protocol: UDP
     targetPort: 443
-  - name: "HTTPS"
+  - name: "https"
     port: 443
     protocol: TCP
     targetPort: 443
-  - name: "HTTP"
+  - name: "http"
     port: 80
     protocol: TCP
     targetPort: 80
