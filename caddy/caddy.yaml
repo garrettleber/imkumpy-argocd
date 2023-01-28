@@ -39,6 +39,7 @@ spec:
           - name: "caddyfile"
             readOnly: true
             mountPath: "/etc/caddy/Caddyfile"
+            subPath: "Caddyfile"
         resources: {}
       restartPolicy: Always
       volumes:
