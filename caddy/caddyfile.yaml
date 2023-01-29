@@ -20,6 +20,7 @@ data:
       @internal {
         remote_ip 192.168.0.0/16
         remote_ip 172.16.0.0/12
+        remote_ip 10.0.0.0/8
       }
     }
 
