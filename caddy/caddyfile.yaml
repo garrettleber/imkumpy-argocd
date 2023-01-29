@@ -9,18 +9,28 @@ metadata:
 data:
   Caddyfile: |-
     {
-      auto_https disable_redirects
+      auto_https off
     }
 
     #
     # Internal Services
     #
 
-    git.kumpdev.com {
+    (internal) {
       @internal {
         remote_ip 192.168.0.0/16
         remote_ip 172.16.0.0/12
       }
+    }
+
+    (403) {
+      respond /* "403 Access Denied" 403 {
+        close
+      }
+    }
+
+    git.kumpdev.com {
+      import internal
       handle @internal {
         reverse_proxy gitlab.int.kumpdev.com:443 {
           transport http {
@@ -29,29 +39,20 @@ data:
         }
       }
       # else
-      respond /* "403 Access Denied" 403 {
-        close
-      }
+      import 403
     }
 
     homepage.kumpdev.com {
-      @internal {
-        remote_ip 192.168.0.0/16
-        remote_ip 172.16.0.0/12
-      }
+      import internal
       handle @internal {
         reverse_proxy homepage:3000
       }
       # else
-      respond /* "403 Access Denied" 403 {
-        close
-      }
+      import 403
     }
 
     omada.kumpdev.com {
-      @internal {
-        remote_ip 192.168.0.0/16
-      }
+      import internal
       handle @internal {
         reverse_proxy omada.int.kumpdev.com:8043 {
           transport http {
@@ -62,30 +63,21 @@ data:
         }
       }
       # else
-      respond /* "403 Access Denied" 403 {
-        close
-      }
+      import 403
     }
 
     plex.kumpdev.com {
       encode gzip
-      @internal {
-        remote_ip 192.168.0.0/16
-      }
+      import internal
       handle @internal {
         reverse_proxy plex.int.kumpdev.com:32400
       }
       # else
-      respond /* "403 Access Denied" 403 {
-        close
-      }
+      import 403
     }
 
     ryzen-proxmox.kumpdev.com {
-      @internal {
-        remote_ip 192.168.0.0/16
-        remote_ip 172.16.0.0/12
-      }
+      import internal
       handle @internal {
         reverse_proxy 192.168.0.100:8006 {
           transport http {
@@ -94,27 +86,20 @@ data:
         }
       }
       # else
-      respond /* "403 Access Denied" 403 {
-        close
-      }
+      import 403
     }
 
     zabbix.kumpdev.com {
       encode gzip
       root * /usr/share/zabbix
       php_fastcgi unix//run/php/php7.4-fpm.sock
-      @internal {
-        remote_ip 192.168.0.0/16
-        remote_ip 172.16.0.0/12
-      }
+      import internal
       handle @internal {
         rewrite * /zabbix/{uri}
         reverse_proxy zabbix.int.kumpdev.com
       }
       # else
-      respond /* "403 Access Denied" 403 {
-        close
-      }
+      import 403
     }
 
     #
