@@ -8,8 +8,8 @@ metadata:
     app: caddy
 data:
   Caddyfile: |-
-    {
-      auto_https off
+    tls { 
+      dns cloudflare {env.CLOUDFLARE_API_TOKEN}
     }
 
     #
