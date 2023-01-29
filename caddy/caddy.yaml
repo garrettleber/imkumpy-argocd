@@ -37,9 +37,9 @@ spec:
           protocol: TCP
         env:
         - name: CLOUDFLARE_EMAIL
-          value: garrett@garrettleber.com
+          value: 'garrett@garrettleber.com'
         - name: ACME_AGREE
-          value: true
+          value: 'true'
         envFrom:
         - secretRef:
             name: cloudflareapitoken
