@@ -66,6 +66,8 @@ spec:
     automated:
       prune: true
       selfHeal: true
+
+# mattermost disabled due to issues setting up calls plugin in k8s
 # ---
 # apiVersion: argoproj.io/v1alpha1
 # kind: Application
@@ -83,6 +85,7 @@ spec:
 #   destination:
 #     server: 'https://kubernetes.default.svc'
 #     namespace: mattermost
+
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
@@ -104,3 +107,5 @@ spec:
     automated:
       prune: true
       selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

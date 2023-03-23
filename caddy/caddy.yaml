@@ -1,9 +1,4 @@
 ---
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: caddy
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -40,9 +35,6 @@ spec:
           value: 'garrett@garrettleber.com'
         - name: ACME_AGREE
           value: 'true'
-        envFrom:
-        - secretRef:
-            name: cloudflareapitoken
         volumeMounts:
           - name: "caddyfile"
             readOnly: true

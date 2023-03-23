@@ -8,109 +8,15 @@ metadata:
     app: caddy
 data:
   Caddyfile: |-
-    {
-      acme_dns cloudflare {env.CLOUDFLARE_API_TOKEN}
-    }
-
-    #
-    # Internal Services
-    #
-
-    (internal) {
-      @internal {
-        remote_ip 192.168.0.0/16
-        remote_ip 172.16.0.0/12
-        remote_ip 10.0.0.0/8
-      }
-    }
-
-    (403) {
-      respond /* "403 Access Denied" 403 {
-        close
-      }
-    }
-
-    git.kumpdev.com {
-      import internal
-      handle @internal {
-        reverse_proxy gitlab.int.kumpdev.com:443 {
-          transport http {
-            tls_insecure_skip_verify
-          }
-        }
-      }
-      # else
-      import 403
-    }
-
-    homepage.kumpdev.com {
-      import internal
-      handle @internal {
-        reverse_proxy homepage:3000
-      }
-      # else
-      import 403
-    }
-
-    omada.kumpdev.com {
-      import internal
-      handle @internal {
-        reverse_proxy omada.int.kumpdev.com:8043 {
-          transport http {
-            tls_insecure_skip_verify
-          }
-          header_up Host {host}:8043
-          header_down Location :8043 :443
-        }
-      }
-      # else
-      import 403
-    }
-
-    plex.kumpdev.com {
-      encode gzip
-      import internal
-      handle @internal {
-        reverse_proxy plex.int.kumpdev.com:32400
-      }
-      # else
-      import 403
-    }
-
-    ryzen-proxmox.kumpdev.com {
-      import internal
-      handle @internal {
-        reverse_proxy 192.168.0.100:8006 {
-          transport http {
-            tls_insecure_skip_verify
-          }
-        }
-      }
-      # else
-      import 403
-    }
-
-    zabbix.kumpdev.com {
-      encode gzip
-      root * /usr/share/zabbix
-      php_fastcgi unix//run/php/php7.4-fpm.sock
-      import internal
-      handle @internal {
-        rewrite * /zabbix/{uri}
-        reverse_proxy zabbix.int.kumpdev.com
-      }
-      # else
-      import 403
-    }
-
     #
     # External Services
+    # -- This deployment will only work for internet-facing services.
     #
 
-    mattermost.kumpdev.com {
+    mattermost.imkumpy.com {
       reverse_proxy 192.168.0.97:8065
     }
 
-    requests.kumpdev.com {
-      reverse_proxy unraid.int.kumpdev.com:5055
+    requests.imkumpy.com {
+      reverse_proxy unraid.imkumpy.in:5055
     }
