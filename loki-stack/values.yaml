@@ -10,7 +10,7 @@ loki-stack:
       enabled: true
       ingressClassName: nginx
       hosts: 
-        - host: loki.int.kumpdev.com
+        - host: loki.imkumpy.in
           paths:
             - /
             # - /api/prom/push
@@ -31,8 +31,7 @@ loki-stack:
       enabled: true
       ingressClassName: nginx
       hosts: 
-        - grafana.kumpdev.com
-        - grafana.int.kumpdev.com
+        - grafana.imkumpy.in
 
   prometheus:
     enabled: true
@@ -44,8 +43,7 @@ loki-stack:
         enabled: true
         ingressClassName: nginx
         hosts: 
-          - alertmanager.kumpdev.com
-          - alertmanager.int.kumpdev.com
+          - alertmanager.imkumpy.in
 
     alertmanagerFiles:
       alertmanager.yml:
@@ -92,15 +90,10 @@ loki-stack:
         scheme: http
         static_configs:
         - targets:
-          - ns1.int.kumpdev.com:9100
-          - ns2.int.kumpdev.com:9100
-          - dockerhost.int.kumpdev.com:9100
-          - omada.int.kumpdev.com:9100
-          - openvpncloud.int.kumpdev.com:9100
-          - ryzen-proxmox.kumpdev.com:9100
-          - hpprodesk-proxmox.kumpdev.com:9100
-          - macmini-proxmox.kumpdev.com:9100
-          - qbittorrent.int.kumpdev.com:9100
-          - ssh.gitea.kumpdev.com:9100
-          - syncthing.int.kumpdev.com:9100
-          - truenas.int.kumpdev.com:9100
+          - ns1.imkumpy.in:9100
+          - ns2.imkumpy.in:9100
+          - dockerhost.imkumpy.in:9100
+          - omada1.imkumpy.in:9100
+          - openvpncloud.imkumpy.in:9100
+          - proxmox-1.imkumpy.in:9100
+          - syncthing.imkumpy.in:9100
