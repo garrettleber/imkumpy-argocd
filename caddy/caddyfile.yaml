@@ -14,7 +14,7 @@ data:
     #
 
     mattermost.imkumpy.com {
-      reverse_proxy 192.168.0.97:8065
+      reverse_proxy mattermost.imkumpy.in:8065
     }
 
     requests.imkumpy.com {
