@@ -35,6 +35,11 @@ spec:
           value: 'garrett@garrettleber.com'
         - name: ACME_AGREE
           value: 'true'
+        - name: CLOUDFLARE_API_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: cloudflareapicredentials
+              key: CLOUDFLARE_API_TOKEN
         volumeMounts:
           - name: "caddyfile"
             readOnly: true

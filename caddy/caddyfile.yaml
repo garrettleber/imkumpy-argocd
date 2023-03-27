@@ -8,10 +8,9 @@ metadata:
     app: caddy
 data:
   Caddyfile: |-
-    #
-    # External Services
-    # -- This deployment will only work for internet-facing services.
-    #
+    {
+      acme_dns cloudflare {$CLOUDFLARE_API_TOKEN}
+    }
 
     mattermost.imkumpy.com {
       reverse_proxy mattermost.imkumpy.in:8065
