@@ -6,7 +6,7 @@ spec:
   size: 100users
   ingress:
     enabled: true
-    host: mattermost.kumpdev.com        # Adjust to your domain
+    host: mattermost.imkumpy.com        # Adjust to your domain
     annotations:
       kubernetes.io/ingress.class: nginx
       #cert-manager.io/cluster-issuer: letsencrypt-prod

@@ -48,7 +48,7 @@ loki-stack:
     alertmanagerFiles:
       alertmanager.yml:
         global: {
-          slack_api_url: 'https://mattermost.kumpdev.com/hooks/7okyo7t1rjd4xgcpp8iz3fu4dc'
+          slack_api_url: 'https://mattermost.imkumpy.com/hooks/7okyo7t1rjd4xgcpp8iz3fu4dc'
         }
         receivers:
           - name: default-receiver

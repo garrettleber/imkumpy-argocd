@@ -9,7 +9,7 @@
 # spec:
 #   project: default
 #   source:
-#     repoURL: 'https://git.kumpdev.com/kumpy/kumpdev-argocd.git'
+#     repoURL: 'https://git.imkumpy.in/kumpy/kumpdev-argocd.git'
 #     path: cert-manager
 #     targetRevision: HEAD
 #   destination:
@@ -30,7 +30,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'https://git.kumpdev.com/kumpy/kumpdev-argocd.git'
+    repoURL: 'https://git.imkumpy.in/kumpy/kumpdev-argocd.git'
     path: loki-stack
     targetRevision: HEAD
     helm:
@@ -56,7 +56,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'https://git.kumpdev.com/kumpy/kumpdev-argocd.git'
+    repoURL: 'https://git.imkumpy.in/kumpy/kumpdev-argocd.git'
     path: teamspeak
     targetRevision: HEAD
   destination:
@@ -79,7 +79,7 @@ spec:
 # spec:
 #   project: default
 #   source:
-#     repoURL: 'https://git.kumpdev.com/kumpy/kumpdev-argocd.git'
+#     repoURL: 'https://git.imkumpy.in/kumpy/kumpdev-argocd.git'
 #     path: mattermost
 #     targetRevision: HEAD
 #   destination:
@@ -97,7 +97,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'https://git.kumpdev.com/kumpy/kumpdev-argocd.git'
+    repoURL: 'https://git.imkumpy.in/kumpy/kumpdev-argocd.git'
     path: caddy
     targetRevision: HEAD
   destination:
