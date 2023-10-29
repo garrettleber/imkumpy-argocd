@@ -1,24 +1,3 @@
-# ---
-# apiVersion: argoproj.io/v1alpha1
-# kind: Application
-# metadata:
-#   name: cert-manager
-#   namespace: cert-manager
-#   finalizers:
-#     - resources-finalizer.argocd.argoproj.io
-# spec:
-#   project: default
-#   source:
-#     repoURL: 'https://git.imkumpy.in/kumpy/kumpdev-argocd.git'
-#     path: cert-manager
-#     targetRevision: HEAD
-#   destination:
-#     server: 'https://kubernetes.default.svc'
-#     namespace: cert-manager
-#   syncPolicy:
-#     automated:
-#       prune: true
-#       selfHeal: true
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
@@ -66,26 +45,6 @@ spec:
     automated:
       prune: true
       selfHeal: true
-
-# mattermost disabled due to issues setting up calls plugin in k8s
-# ---
-# apiVersion: argoproj.io/v1alpha1
-# kind: Application
-# metadata:
-#   name: mattermost
-#   namespace: argocd
-#   finalizers:
-#     - resources-finalizer.argocd.argoproj.io
-# spec:
-#   project: default
-#   source:
-#     repoURL: 'https://git.imkumpy.in/kumpy/kumpdev-argocd.git'
-#     path: mattermost
-#     targetRevision: HEAD
-#   destination:
-#     server: 'https://kubernetes.default.svc'
-#     namespace: mattermost
-
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
@@ -109,3 +68,4 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
+
